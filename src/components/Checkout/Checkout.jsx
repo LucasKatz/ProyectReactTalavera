@@ -32,6 +32,9 @@ import { useNavigate } from "react-router-dom"
               address: address,
               phone: phone,
               email: email,
+                items: cart,
+                total: total,
+                date: Timestamp.fromDate(new Date())
             },
             products: cart.map((product) => ({
               id: product.id,
