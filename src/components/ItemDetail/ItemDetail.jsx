@@ -9,6 +9,7 @@ const ItemDetail = ({id, img, name, category, price, description, stock }) => {
     const {setNotification} = useContext(NotificationContext)
 
     const [goToCart, setGoToCart] = useState (false)
+    const {addItem, getProductQuantity} = useCart ( );
 
     const {addItem} = useCart ( );
 
@@ -23,6 +24,7 @@ const ItemDetail = ({id, img, name, category, price, description, stock }) => {
         addItem (productToAdd, count);
         setNotification('success', 'Producto agregado')
         setGoToCart(true)
+        const quantityAdded = getProductQuantity (id)
 };
     return (
         
@@ -34,7 +36,7 @@ const ItemDetail = ({id, img, name, category, price, description, stock }) => {
             <p className= "description ">{description}</p> 
             { goToCart
                 ? <Link to='/cart'>Terminar Compra</Link>
-                :<ItemCount onAdd={onAdd} stock={stock}/>
+                :<ItemCount onAdd={onAdd} stock={stock} initial={quantityAdded}/>
             }
     
     </div> 
